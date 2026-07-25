@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# Local dev environment — never part of the addon itself.
+venv/
+
+# Updater's own runtime state (last-check timestamp, ignore flag, backup
+# date) — generated on whichever machine runs the addon, not part of the
+# distributable source. See features/addon_updater/README.md.
+superskinpro_updater/
+bl_ext.user_default.superskinpro_updater/

@@ -1,0 +1,9 @@
+{
+  "layer_output": "SEPARATE",
+  "insert_method": "REPLACE",
+  "transfer_method": "CLOSEST_DISTANCE",
+  "auto_assign_armature": true,
+  "use_selected_source_verts": false,
+  "use_selected_target_verts": false,
+  "pose_mode": "REST_POSE"
+}
