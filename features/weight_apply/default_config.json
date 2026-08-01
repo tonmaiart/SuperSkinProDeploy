@@ -1,0 +1,13 @@
+{
+  "add_val": 0.61,
+  "scale_val": 0.61,
+  "smooth_val": 0.61,
+  "sharpen_val": 0.61,
+  "smooth_affected_only": false,
+  "brush": {
+    "brush_projection": "SURFACE",
+    "brush_radius": 10.0,
+    "brush_falloff": 0.0,
+    "brush_strength": 0.5
+  }
+}
