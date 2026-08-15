@@ -1,0 +1,5 @@
+{
+  "insert_method": "REPLACE",
+  "transfer_method": "CLOSEST_DISTANCE",
+  "pose_mode": "REST_POSE"
+}

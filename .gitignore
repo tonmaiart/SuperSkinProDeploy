@@ -1,0 +1,25 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# Local dev environment — never part of the addon itself.
+venv/
+
+# Updater's own runtime state (last-check timestamp, ignore flag, backup
+# date) — generated on whichever machine runs the addon, not part of the
+# distributable source. See features/addon_updater/README.md.
+superskinpro_updater/
+bl_ext.user_default.superskinpro_updater/
+
+# Profiler's exported JSON snapshots — runtime dev-tool output, not source.
+# See core_subsystems/profiler/profiler_service.py's export_to_file().
+profiler_records/
+
+# Debug Console's exported JSON snapshots — runtime dev-tool output, not
+# source. See features/debug_console/debug_console_feature.py's export_all_logs().
+debug_console_records/
+
+# Support Report's exported diagnostic bundles — runtime, per-machine
+# output, not source. See
+# core_subsystems/support_report/support_report_service.py's export_to_file().
+support_reports/

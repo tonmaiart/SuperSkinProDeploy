@@ -1,0 +1,15 @@
+schema_version = "1.0.0"
+id = "superskinprodeploy"
+version = "1.0.7"
+name = "Super Skin Pro (Staging)"
+
+license = ["SPDX:GPL-3.0-or-later"] 
+
+tagline = "Professional weight painting layers system"
+description = "Professional weight painting layers system"
+maintainer = "Natchapon Srisuk"
+type = "add-on"
+
+blender_version_min = "4.2.0"
+tags = ["Rigging", "Animation", "Weight Painting"]
+permissions = ["network"]
