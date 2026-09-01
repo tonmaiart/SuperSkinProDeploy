@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# Local dev environment — never part of the addon itself.
+venv/
+
+# NOTE: profiler_records/, debug_console_records/, support_reports/, and the
+# addon updater's own status-JSON folder (formerly
+# bl_ext.user_default.<addon_package>_updater/, and before that
+# superskinpro_updater/ -- both stale pattern names that never actually
+# matched the real folder, see docs/domains/addon_updater.md's Guardrails
+# section) used to be gitignored here because CoreFacade.get_dev_output_dir()
+# wrote them inside the addon's own installed folder. They now all resolve to
+# a per-user Blender data directory instead (bpy.utils.user_resource
+# ('DATAFILES', ...) via core_subsystems/dev_records/dev_records_service.py)
+# specifically so they live outside this working tree entirely -- so there is
+# nothing left for an entry to ever match here. See
+# docs/core-interfaces/facade-api.md's "Dev Output Folders" section.
+
+# documents/ — the mkdocs documentation site (merged in from the former
+# standalone superskinpro-docs repo). site/ is mkdocs's generated HTML build
+# output, not source -- regenerate with `mkdocs build` from documents/docs/.
+# Excluded from the release package entirely (see .github/workflows/
+# release.yml's cleanup step) -- this folder never ships with the addon.
+documents/site/
