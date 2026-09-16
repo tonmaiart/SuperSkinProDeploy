@@ -1,0 +1,39 @@
+{
+  "engine": "Github",
+  "user": "tonmaiart",
+  "repo": "SuperSkinProDeploy",
+  "website": "https://github.com/tonmaiart/SuperSkinPro-Extension",
+  "private_token": null,
+  "subfolder_path": "",
+  "verbose": false,
+  "overwrite_patterns": [
+    "*.py",
+    "*.so",
+    "*.png",
+    "*.jpg",
+    "*.json",
+    "README.md",
+    "LICENSE",
+    "blender_manifest.toml"
+  ],
+  "remove_pre_update_patterns": [
+    "*.py",
+    "*.pyc",
+    "__pycache__"
+  ],
+  "include_branches": true,
+  "use_releases": true,
+  "include_branch_list": [
+    "main"
+  ],
+  "manual_only": false,
+  "fake_install": false,
+  "show_popups": true,
+  "version_min_update": [
+    0,
+    0,
+    0
+  ],
+  "version_max_update": null,
+  "auto_reload_post_update": false
+}
