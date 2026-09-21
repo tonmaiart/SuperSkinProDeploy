@@ -1,0 +1,35 @@
+{
+  "_schema_version": 1,
+  "customize": {
+    "bone_picker": {
+      "hover":   [1.0, 0.55, 0.0, 0.95],
+      "recent":  [1.0, 0.15, 0.15, 1.0],
+      "in_pool": [0.0, 0.3, 0.75, 0.9],
+      "default": [1.0, 1.0, 1.0, 0.2]
+    }
+  },
+  "mirror": {
+    "mirror_axis": "X",
+    "direction": "POS_NEG",
+    "mirror_data": "BOTH",
+    "search_replace_pairs": [
+      ["*.l", "*.r"],
+      ["*.L", "*.R"],
+      ["*_L", "*_R"],
+      ["*_l", "*_r"]
+    ]
+  },
+  "license": {
+    "license_key": "",
+    "activation_token": "",
+    "status_message": ""
+  },
+  "debug": {
+    "temp_vg": false,
+    "core_pipeline": false,
+    "rust_ffi": false,
+    "viewport_viz": false,
+    "bone_id": false,
+    "feature_domains": false
+  }
+}
