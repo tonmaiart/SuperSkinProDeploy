@@ -1,0 +1,11 @@
+{
+  "mirror_axis": "X",
+  "direction": "POS_NEG",
+  "mirror_data": "BOTH",
+  "search_replace_pairs": [
+    ["*.l", "*.r"],
+    ["*.L", "*.R"],
+    ["*_L", "*_R"],
+    ["*_l", "*_r"]
+  ]
+}

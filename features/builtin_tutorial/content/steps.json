@@ -1,0 +1,38 @@
+[
+  {
+    "id": "activate",
+    "title": "1. Activate SuperSkinPro",
+    "image": "01_activate.png",
+    "description": "Open Settings and enter your license key to activate SuperSkinPro. Most tools stay locked until the addon is activated -- this guide, Documentation, and the Discord link always stay available, even before activation."
+  },
+  {
+    "id": "select_mesh",
+    "title": "2. Select Your Mesh",
+    "image": "02_select_mesh.png",
+    "description": "Select a mesh with an Armature modifier, then press Edit Layer Weight from the LAYER tab. This is where weight painting and layer editing happen."
+  },
+  {
+    "id": "layers_bones",
+    "title": "3. Layers & Deform Bones",
+    "image": "03_layers_bones.png",
+    "description": "The Layer list and Deform Bones list pick which weight layer and which bone you are currently editing. Each list's sidebar has its own Clipboard menu for copying, cutting, and pasting weights."
+  },
+  {
+    "id": "paint_weights",
+    "title": "4. Paint Weights",
+    "image": "04_paint_weights.png",
+    "description": "Add, Scale, Smooth, and Sharpen shape weights on the active layer with a brush. Alt+Shift+RMB adjusts the circle brush radius interactively while you paint."
+  },
+  {
+    "id": "bone_picker_mirror",
+    "title": "5. Bone Picker & Mirror",
+    "image": "05_bone_picker_mirror.png",
+    "description": "Alt+2 opens the Bone Picker to select deform bones directly in the viewport. Alt+3 toggles a per-bone color overlay. Mirror copies weights across a symmetric rig instead of painting both sides by hand."
+  },
+  {
+    "id": "save_export",
+    "title": "6. Save & Export",
+    "image": "06_save_export.png",
+    "description": "Press Save Weights to exit Edit Layer Weight mode and flatten your layers back onto the mesh. Export Weight JSON (in the LAYER tab's tool dropdown) backs up or moves weights between meshes."
+  }
+]
