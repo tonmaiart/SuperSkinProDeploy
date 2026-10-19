@@ -1,0 +1,48 @@
+SuperSkinPro Software and Source Code (the "Software")
+Copyright (c) 2026 Natchapon Srisuk. All rights reserved.
+
+The Software is made of two parts under different licenses.
+
+============================================================================
+Part 1: Python Components (GNU GPL v3.0 or later)
+============================================================================
+
+Every Python source file (*.py) of the Software and blender_manifest.toml
+(the "Python Components") are free software: you can redistribute them and/or
+modify them under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
+
+The Python Components are distributed in the hope that they will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+
+A copy of the GNU General Public License is provided in the file COPYING. If
+not, see <https://www.gnu.org/licenses/>.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+============================================================================
+Part 2: Proprietary Components (Proprietary Software License Agreement)
+============================================================================
+
+Everything in the Software that is not a Python Component (the "Proprietary
+Components") is proprietary. This includes, without limitation, the Rust
+source code (rust_logic/), the precompiled native libraries built from it
+(bin/), image and icon assets, and documentation.
+
+All creative works, source code, file structures, layouts, and related documentation in the Proprietary Components are the exclusive intellectual property of Natchapon Srisuk (the "Copyright Owner").
+
+Grant of use: a person who obtained the Software from the Copyright Owner or an authorized marketplace may install and use the Proprietary Components, unmodified, solely as part of the Software, including for personal and commercial work created with it.
+
+Except for that grant, no individual, group, or legal entity is permitted to perform any of the following actions without the prior explicit written consent of the Copyright Owner:
+
+1. Copy, reproduce, modify, alter, adapt, reverse-engineer, decompile, or translate any part or the entirety of the Proprietary Components.
+2. Distribute, publish, sub-license, rent, lease, or transfer ownership of the Proprietary Components to any third party.
+3. Utilize the Proprietary Components or their architectural logic for any commercial purposes outside the grant of use above, or integrate them as a component inside another software product for financial gain.
+4. Supply or feed any snippet of the Proprietary Components' source code, structural architecture, or proprietary data into public artificial intelligence models or external training datasets (AI Training Data).
+
+Any violation of this Agreement constitutes a direct infringement of international copyright and intellectual property laws and will be prosecuted to the maximum extent permissible under the law.
+
+For licensing inquiries or commercial use permissions, please contact the Copyright Owner directly.
