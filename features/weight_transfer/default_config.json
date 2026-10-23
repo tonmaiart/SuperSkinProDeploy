@@ -1,0 +1,5 @@
+{
+  "force_init_layer": false,
+  "preserve_existing_layers": true,
+  "transfer_method": "CLOSEST_DISTANCE"
+}
