@@ -1,0 +1,42 @@
+schema_version = "1.0.0"
+id = "superskinprodeploy"
+version = "1.2.1"
+name = "Super Skin Pro (Staging)"
+
+license = ["SPDX:GPL-3.0-or-later"]
+copyright = ["2026 Natchapon Srisuk"]
+
+tagline = "Professional weight painting layers system"
+description = "Professional weight painting layers system"
+maintainer = "TomaTactics"
+website = "https://docs.superskinpro.com/"
+type = "add-on"
+
+blender_version_min = "4.2.0"
+# One per binary release.yml builds into bin/ (mac is a universal2 build).
+platforms = ["windows-x64", "linux-x64", "macos-arm64", "macos-x64"]
+tags = ["Animation", "Rigging", "Paint", "Mesh"]
+
+# Dev-only content kept out of `blender --command extension build`, matching release.yml.
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  "*.pyc",
+  "/.git/",
+  "/.github/",
+  "/.claude/",
+  "/.gitignore",
+  "/CLAUDE.md",
+  "/docs/",
+  "/tests/",
+  "/scripts/",
+  "/rust_logic/",
+  "/venv/",
+  "/devkit/",
+  "/debug_console_records/",
+  "/profiler_records/",
+  "/support_reports/",
+  "*_updater/",
+  "/*.zip",
+  "/dist/",
+]

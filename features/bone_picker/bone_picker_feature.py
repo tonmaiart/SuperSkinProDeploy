@@ -1,0 +1,165 @@
+
+import bpy
+import os
+
+from ...interface.registry.register_api import UnifiedFeatureExtension, UnifiedRegistry
+from ...core.facade import CoreFacade
+from . import ops
+from . import deform_overlay
+
+_DEFAULTS_PATH = os.path.join(os.path.dirname(__file__), "default_config.json")
+_LEGACY_LEVEL_STEP = 0.25
+
+
+
+def _on_changed(self, context):
+    deform_overlay.start_preview()
+    if not getattr(context, 'active_object', None):
+        return
+    from ...core.facade import CoreFacade
+    try:
+        CoreFacade(context).invalidate_color_only()
+    except ValueError:
+        pass
+    CoreFacade.save_prefs()
+
+
+def _on_color_changed(self, context):
+    deform_overlay.start_preview()
+    CoreFacade.save_prefs()
+
+
+_COLOR_DEFAULTS = deform_overlay.CATEGORY_COLOR_DEFAULTS
+
+
+class SSPrefBonePicker(bpy.types.PropertyGroup):
+    """Adjustable settings for the static deform skeleton overlay."""
+
+    overall_size: bpy.props.FloatProperty(
+        name="Bone Overlay Size",
+        description="Size of the bone HUD shapes. Drag left or right to resize, double-click to type",
+        min=0.1, max=5.0, default=1.0, step=10, precision=2,
+        update=_on_changed,
+    )
+    active_color: bpy.props.FloatVectorProperty(
+        name="Active", description="Bone HUD color of the active bone",
+        subtype='COLOR_GAMMA', size=4, min=0.0, max=1.0,
+        default=_COLOR_DEFAULTS["active_color"], update=_on_color_changed,
+    )
+    selected_color: bpy.props.FloatVectorProperty(
+        name="Selected", description="Bone HUD color of the other selected bones",
+        subtype='COLOR_GAMMA', size=4, min=0.0, max=1.0,
+        default=_COLOR_DEFAULTS["selected_color"], update=_on_color_changed,
+    )
+    influenced_color: bpy.props.FloatVectorProperty(
+        name="Influenced", description="Bone HUD color of bones with weight on the active layer",
+        subtype='COLOR_GAMMA', size=4, min=0.0, max=1.0,
+        default=_COLOR_DEFAULTS["influenced_color"], update=_on_color_changed,
+    )
+    uninfluenced_color: bpy.props.FloatVectorProperty(
+        name="Uninfluenced", description="Bone HUD color of bones with no weight on the active layer",
+        subtype='COLOR_GAMMA', size=4, min=0.0, max=1.0,
+        default=_COLOR_DEFAULTS["uninfluenced_color"], update=_on_color_changed,
+    )
+
+
+def bone_hud_size_owner(context):
+    prefs = getattr(context.window_manager, "superskin_bone_picker_prefs", None)
+    return (prefs, "overall_size") if prefs is not None else None
+
+
+
+class BonePickerFeature(UnifiedFeatureExtension):
+    """Unified extension for the Bone Picker domain."""
+
+
+    domain_id = "bone_picker"
+    actions = ["start_bone_picker", "stop_bone_picker", "clear_multi_selection"]
+    json_path = ("customize", "bone_picker")
+    defaults_path = _DEFAULTS_PATH
+    keymaps = [
+        {
+            "key": "Alt+2", "label": "Bone Picker", "mode": "Hold",
+            "source_label": "Pick Bone",
+            "is_active": lambda: ops.is_active(),
+            "exclusive": True,
+            "sub_keymaps": [
+                {"key": "Release", "label": "Select Bone"},
+                {"separator": True},
+                {"key": "Left Click", "label": "Add Selection (Multi-Select)"},
+                {"key": "Middle Click", "label": "Remove Selection (Multi-Select)"},
+                {"separator": True},
+                {"key": "Right Click", "label": "Cancel"},
+            ],
+        },
+    ]
+    supports_dev_override = False
+    supports_reset_to_default = False
+
+
+    def execute(self, action: str, context, core_facade: CoreFacade) -> dict:
+        try:
+            if action == "start_bone_picker":
+                pass
+            elif action == "stop_bone_picker":
+                pass
+            elif action == "clear_multi_selection":
+                obj = core_facade.get_obj()
+                storage = getattr(obj, "superskin_storage", None)
+                if storage:
+                    core_facade.clear_all_selected(obj)
+                    storage.selection_history = ""
+                    storage.last_clicked_index = -1
+                core_facade.show_report("CLEAN ALL MULTI SELECTION")
+            else:
+                return {"status": "CANCELLED", "message": f"Unknown action: {action}"}
+        except Exception as e:
+            return {"status": "CANCELLED", "message": str(e)}
+        return {"status": "FINISHED"}
+
+    def get_keymap_items(self) -> list:
+        from . import keymap as _keymap
+        return _keymap.get_registered_keymap_items()
+
+
+    def draw_section(self, layout, context) -> None:
+        pass
+
+
+    def populate(self, data: dict) -> None:
+        bp = bpy.context.window_manager.superskin_bone_picker_prefs
+        if "size_level" in data:
+            bp.overall_size = max(0.1, min(5.0, int(data["size_level"]) * _LEGACY_LEVEL_STEP))
+        elif "overall_size" in data:
+            bp.overall_size = float(data["overall_size"])
+        for prop, default in _COLOR_DEFAULTS.items():
+            color = data.get(prop)
+            valid = isinstance(color, (list, tuple)) and len(color) == 4
+            setattr(bp, prop, [float(c) for c in color] if valid else default)
+
+    def serialize_into(self, full_dict: dict) -> None:
+        bp = bpy.context.window_manager.superskin_bone_picker_prefs
+        section = {"overall_size": bp.overall_size}
+        for prop in _COLOR_DEFAULTS:
+            section[prop] = list(getattr(bp, prop))
+        full_dict.setdefault("customize", {})["bone_picker"] = section
+
+
+
+def register():
+    if hasattr(bpy.types, SSPrefBonePicker.__name__):
+        bpy.utils.unregister_class(SSPrefBonePicker)
+    bpy.utils.register_class(SSPrefBonePicker)
+    bpy.types.WindowManager.superskin_bone_picker_prefs = bpy.props.PointerProperty(
+        type=SSPrefBonePicker, options={'SKIP_SAVE'},
+    )
+    UnifiedRegistry.register(BonePickerFeature())
+
+
+def unregister():
+    UnifiedRegistry.unregister("bone_picker")
+    try:
+        del bpy.types.WindowManager.superskin_bone_picker_prefs
+    except Exception:
+        pass
+    bpy.utils.unregister_class(SSPrefBonePicker)

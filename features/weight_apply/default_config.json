@@ -1,0 +1,20 @@
+{
+  "add_val": 0.61,
+  "scale_val": 0.61,
+  "smooth_val": 0.61,
+  "sharpen_val": 0.61,
+  "smooth_affected_only": false,
+  "brush": {
+    "brush_projection": "SURFACE",
+    "brush_radius_surface": 0.1,
+    "brush_radius_screen": 0.1,
+    "use_pressure_strength_surface": true,
+    "use_pressure_strength_screen": false,
+    "connected_only_surface": false,
+    "connected_only_screen": false,
+    "falloff_surface": "SMOOTH",
+    "falloff_screen": "CONSTANT",
+    "cursor_surface_color": [0.0, 0.7686, 1.0, 0.902],
+    "cursor_screen_color": [1.0, 0.0039, 0.0118, 0.902]
+  }
+}
