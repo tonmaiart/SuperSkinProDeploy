@@ -1,0 +1,2 @@
+
+WEIGHT_FLOOR = 1e-6
