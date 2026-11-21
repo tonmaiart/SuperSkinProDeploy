@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# Local dev environment — never part of the addon itself.
+venv/
+
+# Local store zip output (scripts/build_release_zip.py).
+dist/
+
+# Dev output, user prefs and the native cache live in the add-on's per-user
+# folder (bpy.utils.extension_path_user), never in this working tree.
+
+# Version stamped by the last local rust_logic/build.py run.
+build_info.json
